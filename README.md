@@ -108,6 +108,6 @@ Please see the specific service specification for details:
 - [DK Hostmaster EPP Service Specification](https://github.com/DK-Hostmaster/epp-service-specification)
 - For details on the service version etc. please see [the EPP Service Wiki](https://github.com/DK-Hostmaster/epp-service-specification/wiki)
 - [DK Hostmaster DAS Service Specification](https://github.com/DK-Hostmaster/das-service-specification)
-- For details on the service version etc. please see [the DAS Service Wiki]()
+- For details on the service version etc. please see [the DAS Service Wiki](https://github.com/DK-Hostmaster/das-service-specification/wiki)
 - [DK Hostmaster RP Service Specification](https://github.com/DK-Hostmaster/rp-service-specification)
 - For details on the service version etc. please see [the RP Service Wiki](https://github.com/DK-Hostmaster/rp-service-specification/wiki)
