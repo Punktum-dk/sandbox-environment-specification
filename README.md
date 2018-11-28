@@ -70,7 +70,7 @@ Limitations and special circumstances are documented in the specifications for t
 <a id="sandbox-environment"></a>
 ## Sandbox Environment
 
-The services and components deployed to the sandbox environment are listed in the Wiki with versions and other relevant information.
+The services and components deployed to the sandbox environment are listed in [the Wiki](https://github.com/DK-Hostmaster/sandbox-environment-specification/wiki) with versions and other relevant information.
 
 <a id="available-services"></a>
 ### Available Services
