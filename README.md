@@ -14,9 +14,9 @@
 - [Sandbox Environment in Brief](#sandbox-environment-in-brief)
 - [Sandbox Environment](#sandbox-environment)
   - [Available Services](#available-services)
+    - [DAS](#das)
     - [EPP](#epp)
     - [RP](#rp)
-    - [DAS](#das)
   - [Additional Facilities](#additional-facilities)
     - [Domain Application Processing](#domain-application-processing)
 - [Implementation Requirements](#implementation-requirements)
@@ -77,6 +77,11 @@ The services and components deployed to the sandbox environment are listed in [t
 
 DK Hostmaster offers the following services on the sandbox environment:
 
+<a id="das"></a>
+#### DAS
+
+- `https://das-sandbox.dk-hostmaster.dk/`
+
 <a id="epp"></a>
 #### EPP
 
@@ -86,11 +91,6 @@ DK Hostmaster offers the following services on the sandbox environment:
 #### RP
 
 - `https://rp-sandbox.dk-hostmaster.dk/`
-
-<a id="das"></a>
-#### DAS
-
-- `https://das-sandbox.dk-hostmaster.dk/`
 
 <a id="additional-facilities"></a>
 ### Additional Facilities
