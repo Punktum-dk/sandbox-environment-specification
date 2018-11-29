@@ -1,6 +1,6 @@
 # DK Hostmaster Sandbox Environment Specification
 
-2018-11-28 Revision 1.00
+2018-11-29 Revision 2.00
 
 ## Table of Contents
 
@@ -15,6 +15,7 @@
 - [Sandbox Environment](#sandbox-environment)
   - [Available Services](#available-services)
     - [DAS](#das)
+    - [DSU](#dsu)
     - [EPP](#epp)
     - [RP](#rp)
   - [Additional Facilities](#additional-facilities)
@@ -49,6 +50,10 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 <a id="document-history"></a>
 ### Document History
 
+2.00 2018-11-29
+
+- DSU Service added to consolidated sandbox environment
+
 1.00 2018-11-28
 
 - Initial revision
@@ -82,6 +87,11 @@ DK Hostmaster offers the following services on the sandbox environment:
 
 - `https://das-sandbox.dk-hostmaster.dk/`
 
+<a id="dsu"></a>
+#### DSU
+
+- `https://dsu-sandbox.dk-hostmaster.dk/`
+
 <a id="epp"></a>
 #### EPP
 
@@ -105,9 +115,11 @@ The sandbox environment also holds a back-end service component for domain proce
 
 Please see the specific service specification for details:
 
-- [DK Hostmaster EPP Service Specification](https://github.com/DK-Hostmaster/epp-service-specification)
-- For details on the service version etc. please see [the EPP Service Wiki](https://github.com/DK-Hostmaster/epp-service-specification/wiki)
 - [DK Hostmaster DAS Service Specification](https://github.com/DK-Hostmaster/das-service-specification)
 - For details on the service version etc. please see [the DAS Service Wiki](https://github.com/DK-Hostmaster/das-service-specification/wiki)
+- [DK Hostmaster DSU Service Specification](https://github.com/DK-Hostmaster/dsu-service-specification)
+- For details on the service version etc. please see [the DSU Service Wiki](https://github.com/DK-Hostmaster/dsu-service-specification/wiki)
+- [DK Hostmaster EPP Service Specification](https://github.com/DK-Hostmaster/epp-service-specification)
+- For details on the service version etc. please see [the EPP Service Wiki](https://github.com/DK-Hostmaster/epp-service-specification/wiki)
 - [DK Hostmaster RP Service Specification](https://github.com/DK-Hostmaster/rp-service-specification)
 - For details on the service version etc. please see [the RP Service Wiki](https://github.com/DK-Hostmaster/rp-service-specification/wiki)
