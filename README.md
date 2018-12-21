@@ -1,3 +1,5 @@
+![DK Hostmaster Logo](https://www.dk-hostmaster.dk/sites/default/files/dk-logo_0.png)
+
 # DK Hostmaster Sandbox Environment Specification
 
 2018-11-29 Revision 2.00
