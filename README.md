@@ -2,11 +2,11 @@
 
 # DK Hostmaster Sandbox Environment Specification
 
-2018-11-29 Revision 2.00
+2019-07-30 Revision 2.1
 
 ## Table of Contents
 
-<!-- MarkdownTOC bracket=round levels="1,2,3,4,5" indent="  " -->
+<!-- MarkdownTOC bracket=round levels="1,2,3,4,5" indent="  " autoanchor="true" autolink="true" -->
 
 - [Introduction](#introduction)
   - [About this Document](#about-this-document)
@@ -20,6 +20,7 @@
     - [DSU](#dsu)
     - [EPP](#epp)
     - [RP](#rp)
+  - [Available Data](#available-data)
   - [Additional Facilities](#additional-facilities)
     - [Domain Application Processing](#domain-application-processing)
 - [Implementation Requirements](#implementation-requirements)
@@ -52,11 +53,15 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 <a id="document-history"></a>
 ### Document History
 
-2.00 2018-11-29
+2.1 2019-07-30
+
+- Added section on test data
+
+2.0 2018-11-29
 
 - DSU Service added to consolidated sandbox environment
 
-1.00 2018-11-28
+1.0 2018-11-28
 
 - Initial revision
 
@@ -103,6 +108,19 @@ DK Hostmaster offers the following services on the sandbox environment:
 #### RP
 
 - `https://rp-sandbox.dk-hostmaster.dk/`
+
+<a id="available-data"></a>
+### Available Data
+
+The general test data available in the sandbox environment are currently:
+
+- `domaeneklager.dk`
+- `domæneklager.dk`
+- `domaeneklagenaevnet.dk`
+- `domæneklagenævnet.dk`
+- `eksempel.dk`
+
+The different services listed above might specify additional test data, specific to the service in question and hence only documented per service in the relevant service specification.
 
 <a id="additional-facilities"></a>
 ### Additional Facilities
