@@ -2,7 +2,7 @@
 
 # DK Hostmaster Sandbox Environment Specification
 
-2019-07-30 Revision 2.1
+2019-07-30 Revision 2.2
 
 ## Table of Contents
 
@@ -52,6 +52,11 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 
 <a id="document-history"></a>
 ### Document History
+
+2.2 2019-07-30
+
+- Added more test data
+- Improved description on test data
 
 2.1 2019-07-30
 
@@ -114,13 +119,17 @@ DK Hostmaster offers the following services on the sandbox environment:
 
 The general test data available in the sandbox environment are currently:
 
+- `dk-hostmaster.dk`
+- `waiting-list.dk`
+- `enqueued.dk`
+- `æøåöäüé.dk`
 - `domaeneklager.dk`
 - `domæneklager.dk`
 - `domaeneklagenaevnet.dk`
 - `domæneklagenævnet.dk`
 - `eksempel.dk`
 
-The different services listed above might specify additional test data, specific to the service in question and hence only documented per service in the relevant service specification.
+The different services listed above might specify if the test data are put to special use, specific to the service in question and hence only documented per service in the relevant service specification.
 
 <a id="additional-facilities"></a>
 ### Additional Facilities
