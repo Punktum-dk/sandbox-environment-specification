@@ -241,7 +241,7 @@ If the hostname of the name server is a subordinate to to a .dk domain name and 
 
 This approval has to be accomplished in our self-service platform. So this is currently not possible.
 
-For domain names under registrar managment, this approval is not necessary.
+For domain names under registrar management, this approval is not necessary.
 
 To bypass this step, it is recommended to create name servers for domain names under registrar management and in own portfolio.
 
