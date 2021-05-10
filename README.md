@@ -186,7 +186,7 @@ As described in the ["Implementation guide for registration of .dk"][IMPLGUIDE] 
 
 Method 2 can at this time not be simulated, as described in the section on the self-service portal.
 
-The recommended way to a bypass this is by using method 1, eventhough this might not match you final implementation.
+The recommended way to a bypass this is by using method 1, even though this might not match you final implementation.
 
 The bypass can be accomplished by adding a time stamp to the application, whether it is via: EPP or the registrar portal (RP)
 
@@ -204,7 +204,7 @@ The privileges and business rules implemented in the sandbox environment are unc
 
 We aim to implement simulated interactions with external components or user entities where possible to simulate a production like flow and to avoid any blocking process steps.
 
-When an application is approved and a domain is created, it requires an acknowledgement from our finance syste. A finance system is not available in our sandbox environment so this is simulated. This mean that the initial privileges granted to registrant, registrar etc. are activated.
+When an application is approved and a domain is created, it requires an acknowledgement from our finance system. A finance system is not available in our sandbox environment so this is simulated. This mean that the initial privileges granted to registrant, registrar etc. are activated.
 
 <a id="sandbox-limitations"></a>
 ### Role Acceptance For Domain Applications
@@ -258,7 +258,7 @@ Next up is the evaluation of the designated name server administrator (NSA).
     - If the user is not in a registrar group, the user has to accept the role via the self-service portal, which is currently not available in the sandbox environment
     - If the user is in another registrar group, this has to be accomplished in the registrar portal. Do note that this is a somewhat constructed  scenario, since it would mean that name server administrators are appointed across registrar groups, there is however no reason not to support this, since it comes with the implementation, which handles the above scenario
 
-To bypass this step, it is recommended to appoint name server adminstrators in own registrar account group.
+To bypass this step, it is recommended to appoint name server administrators in own registrar account group.
 
 For details on registrar account groups, please see - [DK Hostmaster RP Service Specification: registrar account group](https://github.com/DK-Hostmaster/rp-service-specification#registrar-account-group)
 

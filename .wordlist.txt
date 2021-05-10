@@ -19,3 +19,5 @@ hostmaster
 https
 rp
 æøåöäüé
+hostname
+requestor
