@@ -5,7 +5,7 @@
 ![Markdownlint Action](https://github.com/DK-Hostmaster/sandbox-environment-specification/workflows/Markdownlint%20Action/badge.svg)
 ![Spellcheck Action](https://github.com/DK-Hostmaster/sandbox-environment-specification/workflows/Spellcheck%20Action/badge.svg)
 
-2021-05-07 Revision 2.3
+2021-05-13 Revision 2.4
 
 ## Table of Contents
 
@@ -62,6 +62,10 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 <a id="document-history"></a>
 ### Document History
 
+2.4 2021-05-13
+
+- Added mention of tech-announce and linked to page in mailing list for subscription details
+
 2.3 2021-05-07
 
 - Added new section on sandbox limitations
@@ -101,6 +105,10 @@ Limitations and special circumstances are documented in the specifications for t
 ## Sandbox Environment
 
 The services and components deployed to the sandbox environment are listed in [the Wiki](https://github.com/DK-Hostmaster/sandbox-environment-specification/wiki) with versions and other relevant information.
+
+Updates are announced via our tech-announce mailing list.
+
+Please see the [information page][DKHMMAIL] for details on subscribing etc.
 
 <a id="available-services"></a>
 ### Available Services
@@ -269,3 +277,4 @@ See the same additional references for details on name server/host creation:
 
 [DKHMLOGO]: https://www.dk-hostmaster.dk/sites/default/files/dk-logo_0.png
 [IMPLGUIDE]: https://www.dk-hostmaster.dk/en/implementation-guide-registration-dk
+[DKHMMAIL]: https://www.dk-hostmaster.dk/en/mailing-lists
