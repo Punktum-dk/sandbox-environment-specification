@@ -2,8 +2,8 @@
 
 # DK Hostmaster Sandbox Environment Specification
 
-![Markdownlint Action](https://github.com/DK-Hostmaster/sandbox-environment-specification/workflows/Markdownlint%20Action/badge.svg)
-![Spellcheck Action](https://github.com/DK-Hostmaster/sandbox-environment-specification/workflows/Spellcheck%20Action/badge.svg)
+![Markdownlint Action][GHAMKDBADGE]
+![Spellcheck Action][GHASPLLBADGE]
 
 2021-05-13 Revision 2.4
 
@@ -104,7 +104,7 @@ Limitations and special circumstances are documented in the specifications for t
 <a id="sandbox-environment"></a>
 ## Sandbox Environment
 
-The services and components deployed to the sandbox environment are listed in [the Wiki](https://github.com/DK-Hostmaster/sandbox-environment-specification/wiki) with versions and other relevant information.
+The services and components deployed to the sandbox environment are listed in [the Wiki][DKHMSANDWIKI] with versions and other relevant information.
 
 Updates are announced via our tech-announce mailing list.
 
@@ -165,14 +165,14 @@ The sandbox environment also holds a back-end service component for domain proce
 
 Please see the specific service specification for details:
 
-- [DK Hostmaster DAS Service Specification](https://github.com/DK-Hostmaster/das-service-specification)
-- For details on the service version etc. please see [the DAS Service Wiki](https://github.com/DK-Hostmaster/das-service-specification/wiki)
-- [DK Hostmaster DSU Service Specification](https://github.com/DK-Hostmaster/dsu-service-specification)
-- For details on the service version etc. please see [the DSU Service Wiki](https://github.com/DK-Hostmaster/dsu-service-specification/wiki)
-- [DK Hostmaster EPP Service Specification](https://github.com/DK-Hostmaster/epp-service-specification)
-- For details on the service version etc. please see [the EPP Service Wiki](https://github.com/DK-Hostmaster/epp-service-specification/wiki)
-- [DK Hostmaster RP Service Specification](https://github.com/DK-Hostmaster/rp-service-specification)
-- For details on the service version etc. please see [the RP Service Wiki](https://github.com/DK-Hostmaster/rp-service-specification/wiki)
+- [DK Hostmaster DAS Service Specification][DKHMDASSPEC]
+- For details on the service version etc. please see [the DAS Service Wiki][DKHMDASWIKI]
+- [DK Hostmaster DSU Service Specification][DKHMDSUSPEC]
+- For details on the service version etc. please see [the DSU Service Wiki][DKHMDSUWIKI]
+- [DK Hostmaster EPP Service Specification][DKHMEPPSPEC]
+- For details on the service version etc. please see [the EPP Service Wiki][DKHMEPPWIKI]
+- [DK Hostmaster RP Service Specification][DKHMRPSPEC]
+- For details on the service version etc. please see [the RP Service Wiki][DKHMRPWIKI]
 
 <a id="sandbox-limitations"></a>
 ## Sandbox Limitations
@@ -276,5 +276,16 @@ See the same additional references for details on name server/host creation:
 - [DK Hostmaster RP Service Specification: Name Server Application](https://github.com/DK-Hostmaster/rp-service-specification#name-server-application)
 
 [DKHMLOGO]: https://www.dk-hostmaster.dk/sites/default/files/dk-logo_0.png
+[GHAMKDBADGE]: https://github.com/DK-Hostmaster/sandbox-environment-specification/workflows/Markdownlint%20Action/badge.svg
+[GHASPLLBADGE]: https://github.com/DK-Hostmaster/sandbox-environment-specification/workflows/Spellcheck%20Action/badge.svg
 [IMPLGUIDE]: https://www.dk-hostmaster.dk/en/implementation-guide-registration-dk
 [DKHMMAIL]: https://www.dk-hostmaster.dk/en/mailing-lists
+[DKHMEPPSPEC]: https://github.com/DK-Hostmaster/whois-service-specification
+[DKHMRPSPEC]: https://github.com/DK-Hostmaster/whois-service-specification
+[DKHMDASSPEC]: https://github.com/DK-Hostmaster/das-service-specification
+[DKHMDSUSPEC]: https://github.com/DK-Hostmaster/dsu-service-specification
+[DKHMSANDWIKI]: https://github.com/DK-Hostmaster/sandbox-environment-specification/wiki
+[DKHMEPPWIKI]: https://github.com/DK-Hostmaster/epp-service-specification/wiki
+[DKHMRPWIKI]: https://github.com/DK-Hostmaster/rp-service-specification/wiki
+[DKHMDASWIKI]: https://github.com/DK-Hostmaster/das-service-specification/wiki
+[DKHMDSUWIKI]: https://github.com/DK-Hostmaster/dsu-service-specification/wiki
