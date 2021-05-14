@@ -28,9 +28,9 @@
     - [Domain Application Processing](#domain-application-processing)
 - [Implementation Requirements](#implementation-requirements)
 - [Sandbox Limitations](#sandbox-limitations)
-  - [Self-service Portal](self-service-portal)
-  - [Domain Creation and Order Confirmation](domain-creation-and-order-confirmation)
-  - [Privilege Grants](privilege-grants)
+  - [Self-service Portal](#self-service-portal)
+  - [Domain Creation and Order Confirmation](#domain-creation-and-order-confirmation)
+  - [Privilege Grants](#privilege-grants)
   - [Role Acceptance For Domain Applications](#role-acceptance-for-domain-applications)
   - [Host and Role Acceptance For Name Server Applications](#host-and-role-acceptance-for-name-applications)
 
