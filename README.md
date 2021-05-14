@@ -5,7 +5,7 @@
 ![Markdownlint Action][GHAMKDBADGE]
 ![Spellcheck Action][GHASPLLBADGE]
 
-2021-05-13 Revision 2.4
+2021-05-14 Revision 2.5
 
 ## Table of Contents
 
@@ -32,7 +32,9 @@
   - [Domain Creation and Order Confirmation](#domain-creation-and-order-confirmation)
   - [Privilege Grants](#privilege-grants)
   - [Role Acceptance For Domain Applications](#role-acceptance-for-domain-applications)
-  - [Host and Role Acceptance For Name Server Applications](#host-and-role-acceptance-for-name-applications)
+  - [Host and Role Acceptance For Name Server Applications](#host-and-role-acceptance-for-name-server-applications)
+  - [ID-control](#id-control)
+  - [Role Acceptance For Role Invitations](#role-acceptance-for-role-invitations)
 
 <!-- /MarkdownTOC -->
 
@@ -61,6 +63,12 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 
 <a id="document-history"></a>
 ### Document History
+
+2.5 2021-05-14
+
+- Added two more limitations to the section on sandbox limitations
+  - [ID-control](#id-control)
+  - [Role Acceptance For Role Invitations](#role-acceptance-for-role-invitations)
 
 2.4 2021-05-13
 
@@ -214,7 +222,7 @@ We aim to implement simulated interactions with external components or user enti
 
 When an application is approved and a domain is created, it requires an acknowledgement from our finance system. A finance system is not available in our sandbox environment so this is simulated. This mean that the initial privileges granted to registrant, registrar etc. are activated.
 
-<a id="sandbox-limitations"></a>
+<a id="role-acceptance-for-domain-applications"></a>
 ### Role Acceptance For Domain Applications
 
 When an application is processed and the contacts assigned to the roles of:
@@ -240,7 +248,7 @@ The recommendation is to point to users associated with the registrar account gr
 
 For details on registrar account groups, please see - [DK Hostmaster RP Service Specification: registrar account group](https://github.com/DK-Hostmaster/rp-service-specification#registrar-account-group)
 
-<a id="sandbox-limitations"></a>
+<a id="host-and-role-acceptance-for-name-server-applications"></a>
 ### Host and Role Acceptance For Name Server Applications
 
 When an application for creation of a name server is processed there are a number of possible scenarios depending on the data submitted with the application.
@@ -274,6 +282,22 @@ See the same additional references for details on name server/host creation:
 
 - [DK Hostmaster EPP Service Specification: create host](https://github.com/DK-Hostmaster/epp-service-specification#create-domain)
 - [DK Hostmaster RP Service Specification: Name Server Application](https://github.com/DK-Hostmaster/rp-service-specification#name-server-application)
+
+<a id="id-control"></a>
+### ID-control
+
+The requirement for ID-control cannot currently by bypassed.
+
+The ID-control process and features are quite rigid in their implementation, so it is not possible to bypass this essential requirement of the registration process.
+
+<a id="role-acceptance-for-role-invitations"></a>
+### Role Acceptance For Role Invitations
+
+Currently it is possible to change roles on domain names for the roles of billing contact and proxy, required that the initiating user holds the right privileges.
+
+The accept of the role, concluding the process cannot be completed currently.
+
+To bypass this, it is recommended to appoint from own registrar account group.
 
 [DKHMLOGO]: https://www.dk-hostmaster.dk/sites/default/files/dk-logo_0.png
 [GHAMKDBADGE]: https://github.com/DK-Hostmaster/sandbox-environment-specification/workflows/Markdownlint%20Action/badge.svg
