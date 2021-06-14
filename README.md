@@ -5,7 +5,7 @@
 ![Markdownlint Action][GHAMKDBADGE]
 ![Spellcheck Action][GHASPLLBADGE]
 
-2021-05-14 Revision 2.5
+2021-05-26 Revision 2.6
 
 ## Table of Contents
 
@@ -63,6 +63,10 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 
 <a id="document-history"></a>
 ### Document History
+
+2.6 2021-05-26
+
+- Added more information on the limitations on [ID-control](#id-control)
 
 2.5 2021-05-14
 
@@ -289,6 +293,8 @@ See the same additional references for details on name server/host creation:
 The requirement for ID-control cannot currently by bypassed.
 
 The ID-control process and features are quite rigid in their implementation, so it is not possible to bypass this essential requirement of the registration process.
+
+The recommended approach to avoid the pending state of awaiting ID-control to be completed is by creating users with an address outside Denmark. The contact object might be subject to manual ID-control, so it is not guaranteed that the contact is not requested to complete ID-control.
 
 <a id="role-acceptance-for-role-invitations"></a>
 ### Role Acceptance For Role Invitations
