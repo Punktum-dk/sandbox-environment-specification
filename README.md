@@ -296,14 +296,14 @@ See the same additional references for details on name server/host creation:
 
 The requirement for ID-control cannot currently by bypassed.
 
-We have implemented a sandbox feature, simulating the interaktion with 3rd. parties, meaning designated registrants, which have been selected for manual ID-control all pass an ID-control check.
+We have implemented a sandbox feature, simulating the interaction with 3rd. parties, meaning designated registrants, which have been selected for manual ID-control all pass an ID-control check.
 
 Over all the scenarios can be divided as follows:
 
 - all users requiring ID-control using NemID, are kept in the state requiring this. The criteria is currently users with an address in Denmark
 - users not requiring ID-control using NemID, are altered and pass the ID-control check. The criteria is currently users with an address outside Denmark
 
-The capabilities and granularity of testing different use-cases and scenarios is expected to be extended in the future, but this first simulation, makes it it more predicatble and makes it easier to test additional operations.
+The capabilities and granularity of testing different use-cases and scenarios is expected to be extended in the future, but this first simulation, makes it it more predictable and makes it easier to test additional operations.
 
 <a id="role-acceptance-for-role-invitations"></a>
 ### Role Acceptance For Role Invitations
