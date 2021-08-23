@@ -5,7 +5,7 @@
 ![Markdownlint Action][GHAMKDBADGE]
 ![Spellcheck Action][GHASPLLBADGE]
 
-2021-05-26 Revision 2.6
+2021-08-23 Revision 2.7
 
 ## Table of Contents
 
@@ -63,6 +63,10 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 
 <a id="document-history"></a>
 ### Document History
+
+2.7 2021-08-23
+
+- Updated information on simulation of 3rd. party interaction for [ID-control](#id-control)
 
 2.6 2021-05-26
 
@@ -292,9 +296,14 @@ See the same additional references for details on name server/host creation:
 
 The requirement for ID-control cannot currently by bypassed.
 
-The ID-control process and features are quite rigid in their implementation, so it is not possible to bypass this essential requirement of the registration process.
+We have implemented a sandbox feature, simulating the interaktion with 3rd. parties, meaning designated registrants, which have been selected for manual ID-control all pass an ID-control check.
 
-The recommended approach to avoid the pending state of awaiting ID-control to be completed is by creating users with an address outside Denmark. The contact object might be subject to manual ID-control, so it is not guaranteed that the contact is not requested to complete ID-control.
+Over all the scenarios can be divided as follows:
+
+- all users reguiring ID-control using NemID, are kept in the state requiring this. The criteria is currently users with an address in Denmark
+- users not requiring ID-kontrol using NemID, are altered and pass the ID-control check. The criteria is currently users with an address outside Denmark
+
+The capabilities and granularity of testing different use-cases and scenarios is expected to be extended in the future, but this first simulation, makes it it more predicatble and makes it easier to test additional operations.
 
 <a id="role-acceptance-for-role-invitations"></a>
 ### Role Acceptance For Role Invitations
