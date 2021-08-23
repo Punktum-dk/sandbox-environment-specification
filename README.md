@@ -300,8 +300,8 @@ We have implemented a sandbox feature, simulating the interaktion with 3rd. part
 
 Over all the scenarios can be divided as follows:
 
-- all users reguiring ID-control using NemID, are kept in the state requiring this. The criteria is currently users with an address in Denmark
-- users not requiring ID-kontrol using NemID, are altered and pass the ID-control check. The criteria is currently users with an address outside Denmark
+- all users requiring ID-control using NemID, are kept in the state requiring this. The criteria is currently users with an address in Denmark
+- users not requiring ID-control using NemID, are altered and pass the ID-control check. The criteria is currently users with an address outside Denmark
 
 The capabilities and granularity of testing different use-cases and scenarios is expected to be extended in the future, but this first simulation, makes it it more predicatble and makes it easier to test additional operations.
 
