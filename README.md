@@ -5,7 +5,7 @@
 ![Markdownlint Action][GHAMKDBADGE]
 ![Spellcheck Action][GHASPLLBADGE]
 
-2021-08-23 Revision 2.7
+2021-09-02 Revision 2.8
 
 ## Table of Contents
 
@@ -23,6 +23,7 @@
     - [DSU](#dsu)
     - [EPP](#epp)
     - [RP](#rp)
+    - [WHOIS](#whois)
   - [Available Data](#available-data)
   - [Additional Facilities](#additional-facilities)
     - [Domain Application Processing](#domain-application-processing)
@@ -63,6 +64,10 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 
 <a id="document-history"></a>
 ### Document History
+
+2.0 2021-09-02
+
+- Added information on [WHOIS](#whois) service
 
 2.7 2021-08-23
 
@@ -151,6 +156,11 @@ DK Hostmaster offers the following services on the sandbox environment:
 
 - `https://rp-sandbox.dk-hostmaster.dk/`
 
+<a id="whois"></a>
+#### WHOIS
+
+- `whois-sandbox.dk-hostmaster.dk` port `43`
+
 <a id="available-data"></a>
 ### Available Data
 
@@ -189,6 +199,8 @@ Please see the specific service specification for details:
 - For details on the service version etc. please see [the EPP Service Wiki][DKHMEPPWIKI]
 - [DK Hostmaster RP Service Specification][DKHMRPSPEC]
 - For details on the service version etc. please see [the RP Service Wiki][DKHMRPWIKI]
+- [DK Hostmaster WHOIS Service Specification][DKHMWHOISSPEC]
+- For details on the service version etc. please see [the WHOIS Service Wiki][DKHMWHOISWIKI]
 
 <a id="sandbox-limitations"></a>
 ## Sandbox Limitations
@@ -323,8 +335,10 @@ To bypass this, it is recommended to appoint from own registrar account group.
 [DKHMRPSPEC]: https://github.com/DK-Hostmaster/whois-service-specification
 [DKHMDASSPEC]: https://github.com/DK-Hostmaster/das-service-specification
 [DKHMDSUSPEC]: https://github.com/DK-Hostmaster/dsu-service-specification
+[DKHMWHOISSPEC]: https://github.com/DK-Hostmaster/whois-service-specification
 [DKHMSANDWIKI]: https://github.com/DK-Hostmaster/sandbox-environment-specification/wiki
 [DKHMEPPWIKI]: https://github.com/DK-Hostmaster/epp-service-specification/wiki
 [DKHMRPWIKI]: https://github.com/DK-Hostmaster/rp-service-specification/wiki
 [DKHMDASWIKI]: https://github.com/DK-Hostmaster/das-service-specification/wiki
 [DKHMDSUWIKI]: https://github.com/DK-Hostmaster/dsu-service-specification/wiki
+[DKHMWHOISWIKI]: https://github.com/DK-Hostmaster/whois-service-specification/wiki
