@@ -66,7 +66,7 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 <a id="document-history"></a>
 ### Document History
 
-2.0 2021-09-02
+2.8 2021-09-02
 
 - Added information on [WHOIS](#whois) service
 
