@@ -5,8 +5,8 @@
 ![Markdownlint Action][GHAMKDBADGE]
 ![Spellcheck Action][GHASPLLBADGE]
 
-2021-09-02
-Revision 2.8
+2021-09-08
+Revision 2.9
 
 ## Table of Contents
 
@@ -37,6 +37,9 @@ Revision 2.8
   - [Host and Role Acceptance For Name Server Applications](#host-and-role-acceptance-for-name-server-applications)
   - [ID-control](#id-control)
   - [Role Acceptance For Role Invitations](#role-acceptance-for-role-invitations)
+  - [DNS](#dns)
+  - [Email](#email)
+  - [Passwords](#passwords)
 
 <!-- /MarkdownTOC -->
 
@@ -65,6 +68,13 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 
 <a id="document-history"></a>
 ### Document History
+
+2.9 2021-09-08
+
+- Added new sections to the chapter on sandbox limitations on:
+  - [DNS](#dns)
+  - [Email](#email)
+  - [Passwords](#passwords)
 
 2.8 2021-09-02
 
@@ -326,6 +336,35 @@ Currently it is possible to change roles on domain names for the roles of billin
 The accept of the role, concluding the process cannot be completed currently.
 
 To bypass this, it is recommended to appoint from own registrar account group.
+
+<a id="dns"></a>
+### DNS
+
+The sandbox environment is not shielded completely off from the live Internet for DNS and does currently not offer it's own DNS service, which influences some of the operations you can perform in the sandbox environment, even though these do not influence the production environment.
+
+The most prominent example is that an attempt at changing name servers might fail, when the receiving name servers do not answer for the domain name in question.
+
+A work around is to register a domain name on name servers, which do not respond for the domain name live (in production) and then update the domain name to the servers, which respond in production.
+
+Currently name servers listed on a domain name application are not checked at the application processing stage, since by currently policy and process, domain name applications are not guaranteed to be fulfilled, so it is not required by the applicant (registrar) to have these settings in place until it makes sense. Having DNS working however is recommended for a better end-to-end user experience.
+
+To test a name server change, one can turn the scenario around and register a domain name, which is also in production and has active DNS.
+
+The application should point to name servers, which you already have access to (see: [Passwords](#passwords)). This is required if you need to generate the AuthInfo token.
+
+The you request the change of name servers to the name servers already responding for the domain name and you can simulate the real operation.
+
+<a id="email"></a>
+### Email
+
+The environment does not support sending out emails, the reason for this was to not confuse sandbox operations with production operations. Proper annotations or embedded warning or the like could open up for this, but for now no emails are sent.
+
+<a id="passwords"></a>
+### Passwords
+
+When a user  is created it is not possible to obtain the password of the newly created user. Due to the lack of email communication it is not possible to obtain a password using the "forgotten password" feature. This applies to both regular users for domain and name server roles and portal users for the registrar portal.
+
+If need be and you require the password of a given user in the sandbox environment, please contact DK Hostmaster
 
 [DKHMLOGO]: https://www.dk-hostmaster.dk/sites/default/files/dk-logo_0.png
 [GHAMKDBADGE]: https://github.com/DK-Hostmaster/sandbox-environment-specification/workflows/Markdownlint%20Action/badge.svg
