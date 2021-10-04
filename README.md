@@ -25,6 +25,7 @@ Revision 2.9
     - [EPP](#epp)
     - [RP](#rp)
     - [WHOIS](#whois)
+    - [WHOIS API](#whois-api)
   - [Available Data](#available-data)
   - [Additional Facilities](#additional-facilities)
     - [Domain Application Processing](#domain-application-processing)
@@ -68,6 +69,11 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 
 <a id="document-history"></a>
 ### Document History
+
+2.10 2021-10-04
+
+- Added new section on [WHOIS API](#whois-api), which has been activated in our sandbox environment
+- Added port numbers where missing
 
 2.9 2021-09-08
 
@@ -150,12 +156,12 @@ DK Hostmaster offers the following services on the sandbox environment:
 <a id="das"></a>
 #### DAS
 
-- `https://das-sandbox.dk-hostmaster.dk/`
+- `https://das-sandbox.dk-hostmaster.dk/` port `443`
 
 <a id="dsu"></a>
 #### DSU
 
-- `https://dsu-sandbox.dk-hostmaster.dk/`
+- `https://dsu-sandbox.dk-hostmaster.dk/` port `443`
 
 <a id="epp"></a>
 #### EPP
@@ -165,12 +171,17 @@ DK Hostmaster offers the following services on the sandbox environment:
 <a id="rp"></a>
 #### RP
 
-- `https://rp-sandbox.dk-hostmaster.dk/`
+- `https://rp-sandbox.dk-hostmaster.dk/` port `443`
 
 <a id="whois"></a>
 #### WHOIS
 
 - `whois-sandbox.dk-hostmaster.dk` port `43`
+
+<a id="whois-api"></a>
+#### WHOIS API
+
+- `https://whois-api-sandbox.dk-hostmaster.dk` port `443`
 
 <a id="available-data"></a>
 ### Available Data
@@ -203,15 +214,17 @@ The sandbox environment also holds a back-end service component for domain proce
 Please see the specific service specification for details:
 
 - [DK Hostmaster DAS Service Specification][DKHMDASSPEC]
-- For details on the service version etc. please see [the DAS Service Wiki][DKHMDASWIKI]
+- For details on the service version, release notes etc. please see [the DAS Service Wiki][DKHMDASWIKI]
 - [DK Hostmaster DSU Service Specification][DKHMDSUSPEC]
-- For details on the service version etc. please see [the DSU Service Wiki][DKHMDSUWIKI]
+- For details on the service version, release notes etc. please see [the DSU Service Wiki][DKHMDSUWIKI]
 - [DK Hostmaster EPP Service Specification][DKHMEPPSPEC]
-- For details on the service version etc. please see [the EPP Service Wiki][DKHMEPPWIKI]
+- For details on the service version, release notes etc. please see [the EPP Service Wiki][DKHMEPPWIKI]
 - [DK Hostmaster RP Service Specification][DKHMRPSPEC]
-- For details on the service version etc. please see [the RP Service Wiki][DKHMRPWIKI]
+- For details on the service version, release notes etc. please see [the RP Service Wiki][DKHMRPWIKI]
 - [DK Hostmaster WHOIS Service Specification][DKHMWHOISSPEC]
-- For details on the service version etc. please see [the WHOIS Service Wiki][DKHMWHOISWIKI]
+- For details on the service version, release notes etc. please see [the WHOIS Service Wiki][DKHMWHOISWIKI]
+- [DK Hostmaster WHOIS API Service Specification][DKHMWHOISAPISPEC]
+- For details on the service version, release notes etc. please see [the WHOIS API Service Wiki][DKHMWHOISAPIWIKI]
 
 <a id="sandbox-limitations"></a>
 ## Sandbox Limitations
@@ -382,3 +395,5 @@ If need be and you require the password of a given user in the sandbox environme
 [DKHMDASWIKI]: https://github.com/DK-Hostmaster/das-service-specification/wiki
 [DKHMDSUWIKI]: https://github.com/DK-Hostmaster/dsu-service-specification/wiki
 [DKHMWHOISWIKI]: https://github.com/DK-Hostmaster/whois-service-specification/wiki
+[DKHMWHOISAPISPEC]: https://github.com/DK-Hostmaster/whois-rest-service-specification
+[DKHMWHOISAPIWIKI]: https://github.com/DK-Hostmaster/whois-rest-service-specification/wiki
