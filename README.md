@@ -177,15 +177,13 @@ DK Hostmaster offers the following services on the sandbox environment:
 
 The general test data available in the sandbox environment are currently:
 
-- `dk-hostmaster.dk`
-- `waiting-list.dk`
-- `enqueued.dk`
-- `æøåöäüé.dk`
-- `domaeneklager.dk`
-- `domæneklager.dk`
-- `domaeneklagenaevnet.dk`
-- `domæneklagenævnet.dk`
-- `eksempel.dk`
+#### Domains
+
+| Domain           | Status |
+| ---------------- | ------ |
+| dk-hostmaster.dk | Active |
+| eksempel.dk      | Active |
+| æøåöäüé.dk       | Active |
 
 The different services listed above might specify if the test data are put to special use, specific to the service in question and hence only documented per service in the relevant service specification.
 
