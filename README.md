@@ -24,6 +24,7 @@ Revision: 3.0
     - [Sandbox Access](#epp-sandbox-access)
     - [What You Can Test](#epp-what-you-can-test)
     - [Limitations](#epp-limitations)
+    - [Test Data](#epp-test-data)
   - [RP](#rp)
     - [Sandbox Access](#rp-sandbox-access)
     - [What You Can Test](#rp-what-you-can-test)
@@ -294,11 +295,12 @@ Please note that the business rules of the production environment also
 apply in the sandbox environment. The limitations listed below are
 specific to the sandbox environment.
 
-- **ID-control cannot be completed:** ID-control of registrants is not
-  available in the sandbox environment. A domain registered to a contact
-  with a Danish address will not be activated, as the system will await
-  an ID-control that cannot be completed. Note that as a sandbox-specific
-  rule, contacts with a non-Danish address are exempt from ID-control.
+- **ID-control cannot be completed:** ID-control of registrants cannot be
+  completed in the sandbox environment. You can test that an ID-control
+  is initiated for a contact with a Danish address — the domain will not
+  be activated, as the system awaits the ID-control — but the ID-control
+  itself cannot be carried out. Note that as a sandbox-specific rule,
+  contacts with a non-Danish address are exempt from ID-control.
   **Workaround:** Use contacts with a non-Danish address for testing
   domain registration, or indicate that you, as the registrar, have
   verified the registrant, using the
@@ -317,18 +319,27 @@ specific to the sandbox environment.
   **Workaround:** Contact Punktum dk at
   [registrar@punktum.dk](mailto:registrar@punktum.dk) to receive examples
   of the emails sent in a given workflow.
-- **Registrant managed domains cannot be created:** As of 1 July 2026,
-  new domains can only be created under registrar management, and this
-  also applies in the sandbox environment. Workflows involving registrant
-  managed domains can therefore not be tested on self-created domains.
-  **Workaround:** Contact Punktum dk at
-  [registrar@punktum.dk](mailto:registrar@punktum.dk) to have registrant
-  managed test data made available.
 - **Domain transfers require a counterpart:** Testing transfers requires
   a second registrar account as the receiving or losing party.
   **Workaround:** Coordinate transfer testing with Punktum dk by
   contacting [registrar@punktum.dk](mailto:registrar@punktum.dk), or test
   in cooperation with another registrar.
+
+<a id="epp-test-data"></a>
+#### Test Data
+
+You create your own test data, such as domains, contacts, and host
+objects, as part of testing in the sandbox environment. One exception is
+registrant managed domains, which cannot be created following the
+transition to registrar management on 1 July 2026. If you need to test
+workflows involving registrant managed domains, please contact Punktum dk
+at [registrar@punktum.dk](mailto:registrar@punktum.dk) to have registrant
+managed test data made available.
+
+The same applies if you need test domains in states that are difficult to
+produce yourself, such as expired or suspended domains. Contact Punktum dk
+at [registrar@punktum.dk](mailto:registrar@punktum.dk), and we will help
+set up the relevant test data.
 
 <a id="rp"></a>
 ### RP
@@ -382,11 +393,12 @@ Please note that the business rules of the production environment also
 apply in the sandbox environment. The limitations listed below are
 specific to the sandbox environment.
 
-- **ID-control cannot be completed:** ID-control of registrants is not
-  available in the sandbox environment. A domain registered to a contact
-  with a Danish address will not be activated, as the system will await
-  an ID-control that cannot be completed. Note that as a sandbox-specific
-  rule, contacts with a non-Danish address are exempt from ID-control.
+- **ID-control cannot be completed:** ID-control of registrants cannot be
+  completed in the sandbox environment. You can test that an ID-control
+  is initiated for a contact with a Danish address — the domain will not
+  be activated, as the system awaits the ID-control — but the ID-control
+  itself cannot be carried out. Note that as a sandbox-specific rule,
+  contacts with a non-Danish address are exempt from ID-control.
   **Workaround:** Use contacts with a non-Danish address for testing
   domain registration, or indicate in the domain creation flow that you,
   as the registrar, have verified the registrant.
@@ -404,13 +416,6 @@ specific to the sandbox environment.
   **Workaround:** Contact Punktum dk at
   [registrar@punktum.dk](mailto:registrar@punktum.dk) to receive examples
   of the emails sent in a given workflow.
-- **Registrant managed domains cannot be created:** As of 1 July 2026,
-  new domains can only be created under registrar management, and this
-  also applies in the sandbox environment. Workflows involving registrant
-  managed domains can therefore not be tested on self-created domains.
-  **Workaround:** Contact Punktum dk at
-  [registrar@punktum.dk](mailto:registrar@punktum.dk) to have registrant
-  managed test data made available.
 - **Domain transfers require a counterpart:** Testing transfers requires
   a second registrar account as the receiving or losing party.
   **Workaround:** Coordinate transfer testing with Punktum dk by
