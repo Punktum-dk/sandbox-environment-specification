@@ -1,12 +1,12 @@
-![DK Hostmaster Logo][DKHMLOGO]
+![Punktum dk Logo][DKHMLOGO]
 
-# DK Hostmaster Sandbox Environment Specification
+# Punktum dk Sandbox Environment Specification
 
 ![Markdownlint Action][GHAMKDBADGE]
 ![Spellcheck Action][GHASPLLBADGE]
 
-2021-09-08
-Revision 2.9
+2026-07-15
+Revision: 3.0
 
 ## Table of Contents
 
@@ -19,62 +19,86 @@ Revision 2.9
 - [The .dk Registry in Brief](#the-dk-registry-in-brief)
 - [Sandbox Environment in Brief](#sandbox-environment-in-brief)
 - [Sandbox Environment](#sandbox-environment)
-  - [Available Services](#available-services)
-    - [DAS](#das)
-    - [DSU](#dsu)
-    - [EPP](#epp)
-    - [RP](#rp)
-    - [WHOIS](#whois)
-  - [Available Data](#available-data)
-  - [Additional Facilities](#additional-facilities)
-    - [Domain Application Processing](#domain-application-processing)
-- [Implementation Requirements](#implementation-requirements)
-- [Sandbox Limitations](#sandbox-limitations)
-  - [Self-service Portal](#self-service-portal)
-  - [Domain Creation and Order Confirmation](#domain-creation-and-order-confirmation)
-  - [Privilege Grants](#privilege-grants)
-  - [Role Acceptance For Domain Applications](#role-acceptance-for-domain-applications)
-  - [Host and Role Acceptance For Name Server Applications](#host-and-role-acceptance-for-name-server-applications)
-  - [ID-control](#id-control)
-  - [Role Acceptance For Role Invitations](#role-acceptance-for-role-invitations)
-  - [DNS](#dns)
-  - [Email](#email)
-  - [Passwords](#passwords)
+  - [General](#general)
+  - [EPP](#epp)
+    - [Sandbox Access](#epp-sandbox-access)
+    - [What You Can Test](#epp-what-you-can-test)
+    - [Limitations](#epp-limitations)
+    - [Test Data](#epp-test-data)
+  - [RP](#rp)
+    - [Sandbox Access](#rp-sandbox-access)
+    - [What You Can Test](#rp-what-you-can-test)
+    - [Limitations](#rp-limitations)
+  - [DAS](#das)
+  - [WHOIS](#whois)
+  - [RESTful WHOIS](#restful-whois)
 
 <!-- /MarkdownTOC -->
 
 <a id="introduction"></a>
 ## Introduction
 
-This document describes the sandbox environment offered by DK Hostmaster.
+This document describes the sandbox environment offered by Punktum dk, the
+registry for the .dk country code top-level domain (ccTLD).
 
-The document is targeted at registrars as audience.
+The sandbox environment allows registrars to develop and test their
+integrations with the .dk registry services in isolation from production.
+Typical use cases include testing EPP client implementations, onboarding of
+new registrars, and testing of domain registration, name server
+administration, and poll message handling.
+
+New service releases may be deployed to the sandbox environment prior to being released to production.
+This allows registrars to test their integrations against upcoming changes before they take effect in
+production.
+
+The document is intended for a technical audience at registrars integrating
+with the Punktum dk services.
 
 <a id="about-this-document"></a>
 ### About this Document
 
-This specification describes the consolidated DK Hostmaster Sandbox environment.
+This specification describes the Punktum dk sandbox environment.
 
-Changes to the document are listed Document History and changes to the sandbox environment are described here.
+Changes to this document and to the sandbox environment are listed in the
+[Document History](#document-history) below.
 
-Any future additions and changes to the implementation are not within the scope of this document and will not be discussed or mentioned throughout this document.
-
-This document is owned and maintained by DK Hostmaster A/S and must not be distributed without this information.
+This document is owned and maintained by Punktum dk A/S and must not be
+distributed without this information.
 
 <a id="license"></a>
 ### License
 
-This document is copyright by DK Hostmaster A/S and is licensed under the MIT License, please see the separate LICENSE file for details.
+This document is copyright by Punktum dk A/S and is licensed under the MIT
+License, please see the separate LICENSE file for details.
 
 <a id="document-history"></a>
 ### Document History
 
+3.0 2026-07-15
+
+- Complete rewrite of the document, restructured around the individual
+  sandbox services and their capabilities
+- Removed the DSU service, which has been discontinued
+- Added the RESTful WHOIS service
+- Restructured sandbox limitations: limitations are now documented per
+  service, each with a recommended workaround where available
+- Removed limitations related to registrant management scenarios
+  (self-service portal, order confirmation, privilege grants, role
+  acceptance flows, and passwords), which are no longer applicable
+  following the transition to registrar management on 1 July 2026
+- Added limitation on creation of registrant managed domains
+- Added the General section describing access, data persistence, service
+  releases, and support
+- Updated test data: dk-hostmaster.dk replaced by punktum.dk
+- Updated all references to point to the current Punktum dk repositories
+  on GitHub
+
 2.9 2021-09-08
 
 - Added new sections to the chapter on sandbox limitations on:
-  - [DNS](#dns)
-  - [Email](#email)
-  - [Passwords](#passwords)
+  - [DNS]
+  - [Email]
+  - [Passwords]
 
 2.8 2021-09-02
 
@@ -82,17 +106,17 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 
 2.7 2021-08-23
 
-- Updated information on simulation of 3rd. party interaction for [ID-control](#id-control)
+- Updated information on simulation of 3rd. party interaction for [ID-control]
 
 2.6 2021-05-26
 
-- Added more information on the limitations on [ID-control](#id-control)
+- Added more information on the limitations on [ID-control]
 
 2.5 2021-05-14
 
 - Added two more limitations to the section on sandbox limitations
-  - [ID-control](#id-control)
-  - [Role Acceptance For Role Invitations](#role-acceptance-for-role-invitations)
+  - [ID-control]
+  - [Role Acceptance For Role Invitations]
 
 2.4 2021-05-13
 
@@ -122,261 +146,375 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 <a id="the-dk-registry-in-brief"></a>
 ## The .dk Registry in Brief
 
-DK Hostmaster is the registry for the ccTLD for Denmark (dk). The current model used in Denmark is based on a sole registry, with DK Hostmaster maintaining the central DNS registry.
+Punktum dk is the registry for the Danish country-code top-level domain
+(.dk) and maintains the central DNS registry.
+
+Punktum dk offers a number of services for interacting with the registry,
+such as [EPP][EPPSPEC], [DAS][DASSPEC], [WHOIS][WHOISSPEC], and
+[RESTful WHOIS][RESTWHOISSPEC]. These services are described in separate
+specifications.
+
+The sandbox environment described in this document makes these services
+available for test purposes.
 
 <a id="sandbox-environment-in-brief"></a>
 ## Sandbox Environment in Brief
 
-The consolidated sandbox environment supports several of the services offered by DK Hostmaster and in addition some of the facilities required to support the services.
+The sandbox environment offers the Punktum dk services relevant for
+registrar integration: EPP, DAS, WHOIS, RESTful WHOIS, and the registrar
+portal (RP). The individual services and how to access them in the sandbox
+are described below.
 
-The sandbox environment is isolated from production and does not support all features and assets of the production environment. The environment is planned to be extended and information on these extensions will be described here as the modifications are scheduled.
+The sandbox environment is isolated from production. Operations carried out
+in the sandbox, such as domain registrations and name server changes, have
+no effect on production data, making the environment safe for development,
+testing, and experimentation.
 
-Limitations and special circumstances are documented in the specifications for the separate services.
+The sandbox environment does not support all features of the production
+environment. Known limitations and recommended workarounds are described 
+per service in the Sandbox Environment chapter
 
 <a id="sandbox-environment"></a>
 ## Sandbox Environment
 
-The services and components deployed to the sandbox environment are listed in [the Wiki][DKHMSANDWIKI] with versions and other relevant information.
+<a id="general"></a>
+### General
 
-Updates are announced via our tech-announce mailing list.
+#### Access
+Access to the sandbox services requires IP whitelisting, with the exception
+of the WHOIS service, which is publicly available. In addition, the EPP,
+DAS, and RP services require a sandbox user.
 
-Please see the [information page][DKHMMAIL] for details on subscribing etc.
+| Service       | IP whitelisting | Sandbox user |
+| ------------- | --------------- | ------------ |
+| EPP           | Required        | Required     |
+| RP            | Required        | Required     |
+| DAS           | Not required    | Required     |
+| WHOIS         | Not required    | Not required |
+| RESTful WHOIS | Required        | Not required |
 
-<a id="available-services"></a>
-### Available Services
+Sandbox access is set up as follows:
 
-DK Hostmaster offers the following services on the sandbox environment:
+- **New registrars** automatically have a sandbox user created for the RP
+  as part of the onboarding process.
+- **Existing registrars** without sandbox access can request a sandbox
+  user by contacting Punktum dk at
+  [registrar@punktum.dk](mailto:registrar@punktum.dk) or via the
+  [registrar contact form][CONTACT]. Sandbox users for the RP can only be
+  created by Punktum dk.
+- **IP whitelisting** for the sandbox services is managed by the registrar
+  via the production RP.
+- **Service API users** for the EPP and DAS sandbox services can be
+  created by the registrar in the sandbox RP, once access to the sandbox
+  RP has been established.
 
-<a id="das"></a>
-#### DAS
+#### Data
 
-- `https://das-sandbox.dk-hostmaster.dk/`
+Data created in the sandbox environment is persistent and is not reset. The
+sandbox services share the same data set, so a domain registered via EPP or
+RP is reflected across all sandbox services and can, for
+example, be queried via DAS or looked up via WHOIS.
 
-<a id="dsu"></a>
-#### DSU
+#### Service Releases
 
-- `https://dsu-sandbox.dk-hostmaster.dk/`
+New XSD versions for the EPP service are deployed to the sandbox
+environment three months prior to release to production. This allows
+registrars to test and adapt their integrations before changes take effect
+in production. Other changes and releases may be deployed to the sandbox
+environment with shorter notice.
+
+Releases are announced in the [Document History](#document-history) of
+this document, on the [Punktum dk status page][STATUSPAGE], and via the
+Punktum dk registrar newsletter. To subscribe to the newsletter, please
+contact Punktum dk at [registrar@punktum.dk](mailto:registrar@punktum.dk).
+
+The service versions currently deployed to the sandbox environment are
+listed in the [sandbox environment wiki][SANDWIKI].
+
+#### Operations and Support
+
+The sandbox environment is operated as a production-grade service. Do note,
+however, that resolution of errors in the sandbox environment may take
+longer than for errors in production.
+
+For questions or issues regarding the sandbox environment, please contact
+Punktum dk at [registrar@punktum.dk](mailto:registrar@punktum.dk) or use
+the [registrar contact form][CONTACT].
 
 <a id="epp"></a>
-#### EPP
+### EPP
 
-- `epp-sandbox.dk-hostmaster.dk` port `700`
+The EPP (Extensible Provisioning Protocol) service is the primary
+integration point for registrars and supports provisioning and management
+of domains, contacts, and host objects. The service is described in the
+[Punktum dk EPP Service Specification][EPPSPEC].
+
+<a id="epp-sandbox-access"></a>
+#### Sandbox Access
+
+| Parameter | Value                          |
+| --------- | ------------------------------ |
+| Hostname  | epp-sandbox.dk-hostmaster.dk   |
+| Port      | 700                            |
+
+Access to the EPP sandbox service requires IP whitelisting and an EPP
+sandbox user, please see [General](#general) for details. The EPP sandbox
+user is created by the registrar in the sandbox RP.
+
+For further details on integrating with the EPP service, including
+transport and connection requirements, please refer to the
+[Punktum dk EPP Service Specification][EPPSPEC].
+
+<a id="epp-what-you-can-test"></a>
+#### What You Can Test
+
+The EPP sandbox service is suited for testing your EPP client
+implementation and most registrar workflows, including:
+
+- **Domain registration**, including the complete application flow.
+  Domain applications submitted in the sandbox are processed by a real
+  back-end service, so status changes and poll messages occur as they
+  would in production.
+- **Domain lifecycle management**, such as renewal, deletion, and restore.
+- **Domain transfers** between registrars.
+- **Contact management**, such as creating and updating contact objects.
+- **Name server administration**, such as creating and updating host
+  objects.
+- **DNSSEC management**, such as adding and updating DS records for a
+  domain.
+- **Poll message handling**, including retrieval and acknowledgement of
+  poll messages.
+
+For details on the individual EPP commands and their syntax, please refer
+to the [Punktum dk EPP Service Specification][EPPSPEC].
+
+<a id="epp-limitations"></a>
+#### Limitations
+
+Please note that the business rules of the production environment also
+apply in the sandbox environment. The limitations listed below are
+specific to the sandbox environment.
+
+- **ID-control cannot be completed:** ID-control of registrants cannot be
+  completed in the sandbox environment. You can test that an ID-control
+  is initiated for a contact with a Danish address — the domain will not
+  be activated, as the system awaits the ID-control — but the ID-control
+  itself cannot be carried out. Note that as a sandbox-specific rule,
+  contacts with a non-Danish address are exempt from ID-control.
+  **Workaround:** Use contacts with a non-Danish address for testing
+  domain registration, or indicate that you, as the registrar, have
+  verified the registrant, using the
+  [`dkhm:contact_verification`][CONTACTVERIFICATION] extension.
+- **Name servers cannot be changed on a domain:** When changing the name
+  servers of a domain, the system validates that the name servers answer
+  authoritatively for the domain. As sandbox domains do not exist in the
+  public DNS, this validation will fail, and the name server change will
+  be rejected. Note that this only applies to changing the name servers
+  of an existing domain; creating host objects and registering domains
+  on name servers registered in the sandbox both work.
+- **No emails are sent:** The sandbox environment does not send emails,
+  neither to registrants nor to registrars. Workflows that depend on
+  email, such as email-based acceptance flows, can therefore not be
+  tested end-to-end.
+  **Workaround:** Contact Punktum dk at
+  [registrar@punktum.dk](mailto:registrar@punktum.dk) to receive examples
+  of the emails sent in a given workflow.
+- **Domain transfers require a counterpart:** Testing transfers requires
+  a second registrar account as the receiving or losing party.
+  **Workaround:** Coordinate transfer testing with Punktum dk by
+  contacting [registrar@punktum.dk](mailto:registrar@punktum.dk), or test
+  in cooperation with another registrar.
+
+<a id="epp-test-data"></a>
+#### Test Data
+
+You create your own test data, such as domains, contacts, and host
+objects, as part of testing in the sandbox environment. One exception is
+registrant managed domains, which cannot be created following the
+transition to registrar management on 1 July 2026. If you need to test
+workflows involving registrant managed domains, please contact Punktum dk
+at [registrar@punktum.dk](mailto:registrar@punktum.dk) to have registrant
+managed test data made available.
+
+The same applies if you need test domains in states that are difficult to
+produce yourself, such as expired or suspended domains. Contact Punktum dk
+at [registrar@punktum.dk](mailto:registrar@punktum.dk), and we will help
+set up the relevant test data.
 
 <a id="rp"></a>
-#### RP
+### RP
 
-- `https://rp-sandbox.dk-hostmaster.dk/`
+The RP (registrar portal) is a web-based portal for registrars, offering
+management of domains and related objects, as well as administration of
+the registrar account. The RP operates on the same registry data as the
+EPP service, so domains and other objects can be managed interchangeably
+through either service. The service is described in the
+[Punktum dk RP Service Specification][RPSPEC].
+
+<a id="rp-sandbox-access"></a>
+#### Sandbox Access
+
+| Parameter | Value                                |
+| --------- | ------------------------------------ |
+| URL       | https://rp-sandbox.dk-hostmaster.dk/ |
+
+Access to the RP sandbox service requires IP whitelisting and an RP
+sandbox user, please see [General](#general) for details. RP sandbox
+users can only be created by Punktum dk and are created automatically as
+part of the onboarding of new registrars.
+
+If you do not have access to the RP sandbox, please contact Punktum dk at
+[registrar@punktum.dk](mailto:registrar@punktum.dk) or via the
+[registrar contact form][CONTACT].
+
+<a id="rp-what-you-can-test"></a>
+#### What You Can Test
+
+The RP sandbox service is suited for testing and exploring most registrar
+workflows through the portal, including:
+
+- **Domain registration**, including the complete application flow.
+  Domain applications submitted in the sandbox are processed by a real
+  back-end service, so status changes occur as they would in production.
+- **Domain lifecycle management**, such as renewal, deletion, and restore.
+- **Domain transfers** between registrars.
+- **Contact management**, such as creating and updating contacts.
+- **Name server administration**, such as creating and updating name
+  servers.
+- **DNSSEC management**, such as adding and updating DS records for a
+  domain.
+- **User administration**, such as creating additional RP users and
+  Service API users for the EPP and DAS sandbox services.
+
+<a id="rp-limitations"></a>
+#### Limitations
+
+Please note that the business rules of the production environment also
+apply in the sandbox environment. The limitations listed below are
+specific to the sandbox environment.
+
+- **ID-control cannot be completed:** ID-control of registrants cannot be
+  completed in the sandbox environment. You can test that an ID-control
+  is initiated for a contact with a Danish address — the domain will not
+  be activated, as the system awaits the ID-control — but the ID-control
+  itself cannot be carried out. Note that as a sandbox-specific rule,
+  contacts with a non-Danish address are exempt from ID-control.
+  **Workaround:** Use contacts with a non-Danish address for testing
+  domain registration, or indicate in the domain creation flow that you,
+  as the registrar, have verified the registrant.
+- **Name servers cannot be changed on a domain:** When changing the name
+  servers of a domain, the system validates that the name servers answer
+  authoritatively for the domain. As sandbox domains do not exist in the
+  public DNS, this validation will fail, and the name server change will
+  be rejected. Note that this only applies to changing the name servers
+  of an existing domain; creating name servers and registering domains
+  on name servers registered in the sandbox both work.
+- **No emails are sent:** The sandbox environment does not send emails,
+  neither to registrants nor to registrars. Workflows that depend on
+  email, such as email-based acceptance flows, can therefore not be
+  tested end-to-end.
+  **Workaround:** Contact Punktum dk at
+  [registrar@punktum.dk](mailto:registrar@punktum.dk) to receive examples
+  of the emails sent in a given workflow.
+- **Domain transfers require a counterpart:** Testing transfers requires
+  a second registrar account as the receiving or losing party.
+  **Workaround:** Coordinate transfer testing with Punktum dk by
+  contacting [registrar@punktum.dk](mailto:registrar@punktum.dk), or test
+  in cooperation with another registrar.
+
+<a id="das"></a>
+### DAS
+
+The DAS (Domain Availability Service) is an HTTP-based service offering
+lookup of the availability of a given domain name. The service is
+described in the [Punktum dk DAS Service Specification][DASSPEC].
+
+| Parameter | Value                                  |
+| --------- | -------------------------------------- |
+| URL       | https://das-sandbox.dk-hostmaster.dk/  |
+
+Access to the DAS sandbox service requires a Service
+API user created in the sandbox RP, please see [General](#general) for
+details.
+
+The DAS sandbox service can be used for testing your DAS client
+implementation, including availability lookups for both available and
+registered domain names. The service reflects all domains registered in
+the sandbox environment, including domains you have registered yourself
+via EPP or RP.
+
+The following test domains are registered in the sandbox environment and
+can be used for lookups of registered domain names:
+
+- punktum.dk
+- eksempel.dk
+- æøåöäüé.dk
 
 <a id="whois"></a>
-#### WHOIS
-
-- `whois-sandbox.dk-hostmaster.dk` port `43`
-
-<a id="available-data"></a>
-### Available Data
-
-The general test data available in the sandbox environment are currently:
-
-#### Domains
-
-| Domain           | Status |
-| ---------------- | ------ |
-| dk-hostmaster.dk | Active |
-| eksempel.dk      | Active |
-| æøåöäüé.dk       | Active |
-
-The different services listed above might specify if the test data are put to special use, specific to the service in question and hence only documented per service in the relevant service specification.
-
-<a id="additional-facilities"></a>
-### Additional Facilities
-
-<a id="domain-application-processing"></a>
-#### Domain Application Processing
-
-The sandbox environment also holds a back-end service component for domain processing, which processes domain applications.
-
-<a id="implementation-requirements"></a>
-## Implementation Requirements
-
-Please see the specific service specification for details:
-
-- [DK Hostmaster DAS Service Specification][DKHMDASSPEC]
-- For details on the service version etc. please see [the DAS Service Wiki][DKHMDASWIKI]
-- [DK Hostmaster DSU Service Specification][DKHMDSUSPEC]
-- For details on the service version etc. please see [the DSU Service Wiki][DKHMDSUWIKI]
-- [DK Hostmaster EPP Service Specification][DKHMEPPSPEC]
-- For details on the service version etc. please see [the EPP Service Wiki][DKHMEPPWIKI]
-- [DK Hostmaster RP Service Specification][DKHMRPSPEC]
-- For details on the service version etc. please see [the RP Service Wiki][DKHMRPWIKI]
-- [DK Hostmaster WHOIS Service Specification][DKHMWHOISSPEC]
-- For details on the service version etc. please see [the WHOIS Service Wiki][DKHMWHOISWIKI]
-
-<a id="sandbox-limitations"></a>
-## Sandbox Limitations
-
-<a id="self-service-portal"></a>
-### Self-service Portal
-
-As listed under the available services, a self-service portal aimed at end-users, meaning non-registrars is not available.
-
-This mean that processes relying on registrant interaction are not possible, simulation can be implemented where this is possible, please see the list of specific limitations below.
-
-<a id="domain-creation-and-order-confirmation"></a>
-### Domain Creation and Order Confirmation
-
-As described in the ["Implementation guide for registration of .dk"][IMPLGUIDE] there are two methods for registration of domain names.
-
-1. Method 1: Requires that the accept of terms and conditions is done at the registrar and this is communicated via the application
-1. Method 2: Requires that the accept of terms and conditions is done at the registry (with DK Hostmaster)
-
-Method 2 can at this time not be simulated, as described in the section on the self-service portal.
-
-The recommended way to a bypass this is by using method 1, even though this might not match you final implementation.
-
-The bypass can be accomplished by adding a time stamp to the application, whether it is via: EPP or the registrar portal (RP)
-
-Please see the below references for details:
-
-- [DK Hostmaster EPP Service Specification: create domain](https://github.com/DK-Hostmaster/epp-service-specification#create-domain)
-- [DK Hostmaster RP Service Specification: Domain Application](https://github.com/DK-Hostmaster/rp-service-specification#domain-application)
-
-<a id="privilege-grants"></a>
-### Privilege Grants
-
-When operations are being completed in the sandbox services, privileges might change and privileges are granted and revoked based on business rules.
-
-The privileges and business rules implemented in the sandbox environment are unchanged from the production environment and hence this can be quite strict.
-
-We aim to implement simulated interactions with external components or user entities where possible to simulate a production like flow and to avoid any blocking process steps.
-
-When an application is approved and a domain is created, it requires an acknowledgement from our finance system. A finance system is not available in our sandbox environment so this is simulated. This mean that the initial privileges granted to registrant, registrar etc. are activated.
-
-<a id="role-acceptance-for-domain-applications"></a>
-### Role Acceptance For Domain Applications
-
-When an application is processed and the contacts assigned to the roles of:
-
-- Proxy/admin
-- Billing
-
-Are pointing to user entities:
-
-- not equal to the registrant
-- not equal to the applicant (registrar)
-- not a member of the registrar account group
-
-An accept of the role is required.
-
-In production this is accomplished using the self-service portal.
-
-As stated in the section on the self-service portal, a instance of this portal is not available in the sandbox environment, so this accept cannot be collected.
-
-Currently the acceptance is not simulated either.
-
-The recommendation is to point to users associated with the registrar account group, so the collection is not required.
-
-For details on registrar account groups, please see - [DK Hostmaster RP Service Specification: registrar account group](https://github.com/DK-Hostmaster/rp-service-specification#registrar-account-group)
-
-<a id="host-and-role-acceptance-for-name-server-applications"></a>
-### Host and Role Acceptance For Name Server Applications
-
-When an application for creation of a name server is processed there are a number of possible scenarios depending on the data submitted with the application.
-
-If the hostname of the name server is a subordinate to to a .dk domain name and the domain name is under registrant management the application require the approval of the registrant.
-
-This approval has to be accomplished in our self-service platform. So this is currently not possible.
-
-For domain names under registrar management, this approval is not necessary.
-
-To bypass this step, it is recommended to create name servers for domain names under registrar management and in own portfolio.
-
-See additional references:
-
-- [DK Hostmaster EPP Service Specification: create host](https://github.com/DK-Hostmaster/epp-service-specification#create-domain)
-- [DK Hostmaster RP Service Specification: Name Server Application](https://github.com/DK-Hostmaster/rp-service-specification#name-server-application)
-
-Next up is the evaluation of the designated name server administrator (NSA).
-
-1. If the designated user is the same as the requestor, approval of the role should not required (it is implicit)
-1. If the requester and the designated user is in the same registrar account group the same rule apply
-1. If the designated user is not the same as the requester and they are not related by group, the role has to be accepted by the designed name server administrator
-    - If the user is not in a registrar group, the user has to accept the role via the self-service portal, which is currently not available in the sandbox environment
-    - If the user is in another registrar group, this has to be accomplished in the registrar portal. Do note that this is a somewhat constructed  scenario, since it would mean that name server administrators are appointed across registrar groups, there is however no reason not to support this, since it comes with the implementation, which handles the above scenario
-
-To bypass this step, it is recommended to appoint name server administrators in own registrar account group.
-
-For details on registrar account groups, please see - [DK Hostmaster RP Service Specification: registrar account group](https://github.com/DK-Hostmaster/rp-service-specification#registrar-account-group)
-
-See the same additional references for details on name server/host creation:
-
-- [DK Hostmaster EPP Service Specification: create host](https://github.com/DK-Hostmaster/epp-service-specification#create-domain)
-- [DK Hostmaster RP Service Specification: Name Server Application](https://github.com/DK-Hostmaster/rp-service-specification#name-server-application)
-
-<a id="id-control"></a>
-### ID-control
-
-The requirement for ID-control cannot currently by bypassed.
-
-We have implemented a sandbox feature, simulating the interaction with 3rd. parties, meaning designated registrants, which have been selected for manual ID-control all pass an ID-control check.
-
-Over all the scenarios can be divided as follows:
-
-- all users requiring ID-control using NemID, are kept in the state requiring this. The criteria is currently users with an address in Denmark
-- users not requiring ID-control using NemID, are altered and pass the ID-control check. The criteria is currently users with an address outside Denmark
-
-The capabilities and granularity of testing different use-cases and scenarios is expected to be extended in the future, but this first simulation, makes it it more predictable and makes it easier to test additional operations.
-
-<a id="role-acceptance-for-role-invitations"></a>
-### Role Acceptance For Role Invitations
-
-Currently it is possible to change roles on domain names for the roles of billing contact and proxy, required that the initiating user holds the right privileges.
-
-The accept of the role, concluding the process cannot be completed currently.
-
-To bypass this, it is recommended to appoint from own registrar account group.
-
-<a id="dns"></a>
-### DNS
-
-The sandbox environment is not shielded completely off from the live Internet for DNS and does currently not offer it's own DNS service, which influences some of the operations you can perform in the sandbox environment, even though these do not influence the production environment.
-
-The most prominent example is that an attempt at changing name servers might fail, when the receiving name servers do not answer for the domain name in question.
-
-A work around is to register a domain name on name servers, which do not respond for the domain name live (in production) and then update the domain name to the servers, which respond in production.
-
-Currently name servers listed on a domain name application are not checked at the application processing stage, since by currently policy and process, domain name applications are not guaranteed to be fulfilled, so it is not required by the applicant (registrar) to have these settings in place until it makes sense. Having DNS working however is recommended for a better end-to-end user experience.
-
-To test a name server change, one can turn the scenario around and register a domain name, which is also in production and has active DNS.
-
-The application should point to name servers, which you already have access to (see: [Passwords](#passwords)). This is required if you need to generate the AuthInfo token.
-
-The you request the change of name servers to the name servers already responding for the domain name and you can simulate the real operation.
-
-<a id="email"></a>
-### Email
-
-The environment does not support sending out emails, the reason for this was to not confuse sandbox operations with production operations. Proper annotations or embedded warning or the like could open up for this, but for now no emails are sent.
-
-<a id="passwords"></a>
-### Passwords
-
-When a user  is created it is not possible to obtain the password of the newly created user. Due to the lack of email communication it is not possible to obtain a password using the "forgotten password" feature. This applies to both regular users for domain and name server roles and portal users for the registrar portal.
-
-If need be and you require the password of a given user in the sandbox environment, please contact DK Hostmaster
-
-[DKHMLOGO]: https://www.dk-hostmaster.dk/sites/default/files/dk-logo_0.png
-[GHAMKDBADGE]: https://github.com/DK-Hostmaster/sandbox-environment-specification/workflows/Markdownlint%20Action/badge.svg
-[GHASPLLBADGE]: https://github.com/DK-Hostmaster/sandbox-environment-specification/workflows/Spellcheck%20Action/badge.svg
-[IMPLGUIDE]: https://www.dk-hostmaster.dk/en/implementation-guide-registration-dk
-[DKHMMAIL]: https://www.dk-hostmaster.dk/en/mailing-lists
-[DKHMEPPSPEC]: https://github.com/DK-Hostmaster/whois-service-specification
-[DKHMRPSPEC]: https://github.com/DK-Hostmaster/whois-service-specification
-[DKHMDASSPEC]: https://github.com/DK-Hostmaster/das-service-specification
-[DKHMDSUSPEC]: https://github.com/DK-Hostmaster/dsu-service-specification
-[DKHMWHOISSPEC]: https://github.com/DK-Hostmaster/whois-service-specification
-[DKHMSANDWIKI]: https://github.com/DK-Hostmaster/sandbox-environment-specification/wiki
-[DKHMEPPWIKI]: https://github.com/DK-Hostmaster/epp-service-specification/wiki
-[DKHMRPWIKI]: https://github.com/DK-Hostmaster/rp-service-specification/wiki
-[DKHMDASWIKI]: https://github.com/DK-Hostmaster/das-service-specification/wiki
-[DKHMDSUWIKI]: https://github.com/DK-Hostmaster/dsu-service-specification/wiki
-[DKHMWHOISWIKI]: https://github.com/DK-Hostmaster/whois-service-specification/wiki
+### WHOIS
+
+The WHOIS service offers lookup of information on domain names, such as
+registration status, name servers, and registrant and registrar
+information. The service is described in the
+[Punktum dk WHOIS Service Specification][WHOISSPEC].
+
+| Parameter | Value                            |
+| --------- | -------------------------------- |
+| Hostname  | whois-sandbox.dk-hostmaster.dk   |
+| Port      | 43                               |
+
+The WHOIS sandbox service is publicly available and requires neither IP
+whitelisting nor a sandbox user.
+
+The WHOIS sandbox service can be used for testing your WHOIS client
+implementation and for looking up domains registered in the sandbox
+environment, including domains you have registered yourself via EPP or
+RP.
+
+The following test domains are registered in the sandbox environment and
+can be used for lookups:
+
+- punktum.dk
+- eksempel.dk
+- æøåöäüé.dk
+
+<a id="restful-whois"></a>
+### RESTful WHOIS
+
+The RESTful WHOIS service is an HTTP-based alternative to the WHOIS
+service, optimized for structured querying and machine-readable
+responses. It offers lookup of information on domain names, name servers,
+and registrars. The service is described in the
+[Punktum dk RESTful WHOIS Service Specification][RESTWHOISSPEC].
+
+| Parameter | Value                                    |
+| --------- | ---------------------------------------- |
+| URL       | https://whois-api-sandbox.dk-hostmaster.dk/ |
+
+Access to the RESTful WHOIS sandbox service requires IP whitelisting,
+please see [General](#general) for details.
+
+The RESTful WHOIS sandbox service can be used for testing your client
+implementation and for looking up domains registered in the sandbox
+environment, including domains you have registered yourself via EPP or
+RP.
+
+The following test domains are registered in the sandbox environment and
+can be used for lookups:
+
+- punktum.dk
+- eksempel.dk
+- æøåöäüé.dk
+
+[DKHMLOGO]: https://punktum.dk/sites/default/files/logo/dk_logo_symbol_1.png
+[GHAMKDBADGE]: https://github.com/Punktum-dk/sandbox-environment-specification/workflows/Markdownlint%20Action/badge.svg
+[GHASPLLBADGE]: https://github.com/Punktum-dk/sandbox-environment-specification/workflows/Spellcheck%20Action/badge.svg
+[SANDWIKI]: https://github.com/Punktum-dk/sandbox-environment-specification/wiki
+[EPPSPEC]: https://github.com/Punktum-dk/epp-service-specification
+[DASSPEC]: https://github.com/Punktum-dk/das-service-specification
+[WHOISSPEC]: https://github.com/Punktum-dk/whois-service-specification
+[RESTWHOISSPEC]: https://github.com/Punktum-dk/whois-rest-service-specification
+[CONTACT]: https://punktum.dk/en/contact-customer-service?lvl1=Registrars&lvl2=CSRegistrarOther
+[STATUSPAGE]: https://status.punktum.dk
+[CONTACTVERIFICATION]: https://github.com/Punktum-dk/epp-service-specification#dkhmcontactverification
+[RPSPEC]: https://github.com/Punktum-dk/rp-service-specification
