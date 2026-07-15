@@ -188,7 +188,7 @@ DAS, and RP services require a sandbox user.
 | ------------- | --------------- | ------------ |
 | EPP           | Required        | Required     |
 | RP            | Required        | Required     |
-| WHOIS         | Not required    | Required     |
+| DAS           | Not required    | Required     |
 | WHOIS         | Not required    | Not required |
 | RESTful WHOIS | Required        | Not required |
 
