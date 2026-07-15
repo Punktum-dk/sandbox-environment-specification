@@ -188,7 +188,7 @@ DAS, and RP services require a sandbox user.
 | ------------- | --------------- | ------------ |
 | EPP           | Required        | Required     |
 | RP            | Required        | Required     |
-| DAS           | Required        | Required     |
+| WHOIS         | Not required    | Required     |
 | WHOIS         | Not required    | Not required |
 | RESTful WHOIS | Required        | Not required |
 
@@ -428,7 +428,7 @@ described in the [Punktum dk DAS Service Specification][DASSPEC].
 | --------- | -------------------------------------- |
 | URL       | https://das-sandbox.dk-hostmaster.dk/  |
 
-Access to the DAS sandbox service requires IP whitelisting and a Service
+Access to the DAS sandbox service requires a Service
 API user created in the sandbox RP, please see [General](#general) for
 details.
 
