@@ -77,8 +77,6 @@ License, please see the separate LICENSE file for details.
 
 - Complete rewrite of the document, restructured around the individual
   sandbox services and their capabilities
-- Company name changed from DK Hostmaster to Punktum dk throughout the
-  document
 - Removed the DSU service, which has been discontinued
 - Added the RESTful WHOIS service
 - Restructured sandbox limitations: limitations are now documented per
@@ -88,8 +86,6 @@ License, please see the separate LICENSE file for details.
   acceptance flows, and passwords), which are no longer applicable
   following the transition to registrar management on 1 July 2026
 - Added limitation on creation of registrant managed domains
-- Updated the description of ID-control; references to NemID have been
-  removed
 - Added the General section describing access, data persistence, service
   releases, and support
 - Updated test data: dk-hostmaster.dk replaced by punktum.dk
