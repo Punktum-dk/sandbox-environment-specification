@@ -477,6 +477,7 @@ can be used for lookups:
 - punktum.dk
 - eksempel.dk
 - æøåöäüé.dk
+- waiting-list.dk (simulates offered to waiting list status)
 
 <a id="restful-whois"></a>
 ### RESTful WHOIS
@@ -505,6 +506,7 @@ can be used for lookups:
 - punktum.dk
 - eksempel.dk
 - æøåöäüé.dk
+- waiting-list.dk (simulates offered to waiting list status)
 
 [DKHMLOGO]: https://punktum.dk/sites/default/files/logo/dk_logo_symbol_1.png
 [GHAMKDBADGE]: https://github.com/Punktum-dk/sandbox-environment-specification/workflows/Markdownlint%20Action/badge.svg
