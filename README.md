@@ -3,7 +3,6 @@
 # Punktum dk Sandbox Environment Specification
 
 ![Markdownlint Action][GHAMKDBADGE]
-![Spellcheck Action][GHASPLLBADGE]
 
 2026-07-15
 Revision: 3.0
@@ -510,7 +509,6 @@ can be used for lookups:
 
 [DKHMLOGO]: https://punktum.dk/sites/default/files/logo/dk_logo_symbol_1.png
 [GHAMKDBADGE]: https://github.com/Punktum-dk/sandbox-environment-specification/workflows/Markdownlint%20Action/badge.svg
-[GHASPLLBADGE]: https://github.com/Punktum-dk/sandbox-environment-specification/workflows/Spellcheck%20Action/badge.svg
 [SANDWIKI]: https://github.com/Punktum-dk/sandbox-environment-specification/wiki
 [EPPSPEC]: https://github.com/Punktum-dk/epp-service-specification
 [DASSPEC]: https://github.com/Punktum-dk/das-service-specification
